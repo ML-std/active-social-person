@@ -9,8 +9,11 @@ describe('UserListService', () => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(UserListService);
   });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+  it('should return a User list with 16 users', (done: DoneFn) => {
+    service.getAll().then(response => {
+      expect(response.length).toBe(16);
+      done();
+    })
+  }
+  );
 });

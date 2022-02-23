@@ -2,13 +2,21 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserListComponent } from './user-list.component';
 
+import { WebStorageService } from '../services/web-storage.service'
+import { HttpClient } from '@angular/common/http';
+
 describe('UserListComponent', () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserListComponent ]
+      declarations: [ UserListComponent ],
+      providers:[
+        {provide: HttpClient, useValue: jasmine.createSpyObj('HttpClient', ['getRemote','putRemote'])
+    }]
+        
+      
     })
     .compileComponents();
   });

@@ -1,27 +1,28 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MetadataErrorService } from './services/errors/metadata-error.service';
 import { UserListComponent } from './user-list/user-list.component';
+
 import { HighlightTextPipe } from './pipes/highlight-text.pipe';
-import { LocationSearchPipe } from './pipes/location-search.pipe';
+import { HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { UserListInterceptorService } from './mocks/user-list-interceptor.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    HighlightTextPipe,
-    LocationSearchPipe
+    HighlightTextPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [{
-    provide: ErrorHandler, useClass: MetadataErrorService
-  }],
+  providers: [
+    // { provide: ErrorHandler, useClass: ErrorMetadataService },
+    { provide: HTTP_INTERCEPTORS, useClass: UserListInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

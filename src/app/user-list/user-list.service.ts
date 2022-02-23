@@ -10,7 +10,7 @@ export class UserListService {
   constructor() { }
 
   public async getAll(): Promise<User[]> {
-   return USERS;
+    return USERS;
   }
 
   public async filter(text: string): Promise<User[]> {
