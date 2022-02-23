@@ -5,11 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MetadataErrorService } from './services/errors/metadata-error.service';
 import { UserListComponent } from './user-list/user-list.component';
+import { HighlightTextPipe } from './pipes/highlight-text.pipe';
+import { LocationSearchPipe } from './pipes/location-search.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent
+    UserListComponent,
+    HighlightTextPipe,
+    LocationSearchPipe
   ],
   imports: [
     BrowserModule,
